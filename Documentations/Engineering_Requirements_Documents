@@ -1,0 +1,113 @@
+# 🛠️ Engineering Requirements Document (ERD)
+
+## Project Title:  
+**Automated Packaging Inspection System with HMI Monitoring and Factory I/O Simulation**
+
+---
+
+## 📄 Document Information
+
+| Item                     | Detail                                 |
+|--------------------------|----------------------------------------|
+| **Document Version**     | 1.0                                    |
+| **Date Created**         | 2025-08-07                             |
+| **Author**               | [Your Name]                            |
+| **Project Duration**     | 10 weeks (Week 1 to Week 10)           |
+| **Software Used**        | Siemens TIA Portal, PLCSIM, Factory I/O, WinCC |
+| **Document Type**        | Engineering Requirements Document      |
+
+---
+
+## 1. Introduction
+
+This document outlines the engineering requirements for the development of a fully simulated automated packaging inspection system. The system mimics real industrial applications where packages are inspected for defects and automatically rejected if they fail certain criteria. It also includes an HMI interface for monitoring and controlling the operation.
+
+---
+
+## 2. System Overview
+
+The system simulates a conveyor-based inspection line where each package is:
+- Detected for presence
+- Checked for label using simulated barcode logic
+- Evaluated for weight conformity using timing or object properties
+- Rejected if any criteria fail
+
+All operations are controlled by a **Siemens S7-1200 PLC** programmed in **Ladder Logic (LAD)** and visualized in **Factory I/O**. The HMI is developed using **WinCC in TIA Portal**, providing real-time operational status, controls, and counters.
+
+---
+
+## 3. Functional Requirements
+
+### 3.1 Conveyor Control
+- Start and Stop conveyor using HMI and/or virtual push buttons.
+- Conveyor moves packages continuously unless stopped.
+
+### 3.2 Inspection Logic
+- Detect the presence of each package using a photoelectric sensor.
+- Check for simulated label using object property or barcode logic.
+- Check for simulated weight conformity using timer-based logic or box type.
+- Combine inspection results to determine pass/fail status.
+
+### 3.3 Rejection Mechanism
+- If a package is faulty, activate a pusher cylinder to remove it from the main line.
+- Route rejected items to a chute conveyor or reject zone.
+
+### 3.4 Counter Management
+- Maintain a reject counter based on pusher cylinder activation or logic condition.
+- Maintain a pass counter for successfully inspected items.
+- Display both counters on the HMI.
+
+### 3.5 HMI Interface
+- Provide Start, Stop, and Reset buttons.
+- Display real-time status: Conveyor Running, Fault Detected, Package Detected, etc.
+- Show pass/reject counters and optionally alarm messages.
+
+---
+
+## 4. Non-Functional Requirements
+
+- All simulation logic must run in real time using PLCSIM and Factory I/O.
+- The HMI must reflect PLC status changes within 1 second.
+- Counter reset should not disrupt system flow or stop logic execution.
+- All tag names must follow a consistent naming convention.
+- All programming must be implemented using **LAD (Ladder Logic)**.
+
+---
+
+## 5. Assumptions
+
+- No real hardware is used; all components are simulated.
+- Label presence is simulated using box type, object property, or timed logic.
+- Weight check is based on simulated timing logic, not load cell data.
+- One item is processed at a time (no multiple object handling).
+
+---
+
+## 6. Constraints
+
+- The system operates fully within a simulated environment.
+- No connection to external systems such as databases or SCADA.
+- No real-time barcode decoding or vision system is implemented.
+- Only components available within Factory I/O are used.
+
+---
+
+## 7. Success Criteria
+
+The project will be considered successful if:
+- The system correctly detects and rejects all faulty items.
+- Counters increment and reset as expected.
+- The HMI provides intuitive and responsive control and feedback.
+- All logic performs reliably within the simulated runtime.
+- The system passes predefined test cases without failure.
+
+---
+
+## 8. Revision History
+
+| Version | Date       | Author      | Changes Made              |
+|---------|------------|-------------|---------------------------|
+| 1.0     | 2025-08-07 | [Your Name] | Initial draft completed   |
+
+---
+
